@@ -1,0 +1,17 @@
+com\wang\mapper\CarouselMapper.class
+com\wang\mapper\OrdersMapperCustom.class
+com\wang\mapper\StuMapper.class
+com\wang\mapper\OrderStatusMapper.class
+com\wang\mapper\OrderItemsMapper.class
+com\wang\mapper\OrdersMapper.class
+com\wang\mapper\ItemsCommentsMapperCustom.class
+com\wang\mapper\CategoryMapperCustom.class
+com\wang\mapper\ItemsSpecMapper.class
+com\wang\mapper\UserAddressMapper.class
+com\wang\mapper\UsersMapper.class
+com\wang\mapper\ItemsMapper.class
+com\wang\mapper\CategoryMapper.class
+com\wang\mapper\ItemsParamMapper.class
+com\wang\mapper\ItemsImgMapper.class
+com\wang\mapper\ItemsCommentsMapper.class
+com\wang\my\mapper\MyMapper.class

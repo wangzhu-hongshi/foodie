@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "file",
+      "type": "com.wang.resources.FileUpload",
+      "sourceType": "com.wang.resources.FileUpload"
+    }
+  ],
+  "properties": [
+    {
+      "name": "file.image-service-url",
+      "type": "java.lang.String",
+      "sourceType": "com.wang.resources.FileUpload"
+    },
+    {
+      "name": "file.image-user-face-location",
+      "type": "java.lang.String",
+      "sourceType": "com.wang.resources.FileUpload"
+    }
+  ],
+  "hints": []
+}

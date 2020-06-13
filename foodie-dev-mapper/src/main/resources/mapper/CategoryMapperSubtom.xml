@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wang.mapper.CategoryMapperCustom" >
+      <resultMap id="myCategoryList" type="com.wang.vo.CategoryVo">
+            <id column="id" property="id"  />
+            <result column="name" property="name" />
+            <result column="type" property="type" />
+            <result column="fatherId" property="fatherId"/>
+            <collection property="subCatList" ofType="com.wang.vo.subCategoryVo">
+                  <id column="subId" property="subId"  />
+                  <result column="subName" property="subName" />
+                  <result column="subType" property="subType" />
+                  <result column="subFatherId" property="subFatherId"/>
+            </collection>
+      </resultMap>
+
+  <select id="getSubCatList" resultMap="myCategoryList" parameterType="int">
+        SELECT
+        f.id as id,
+        f.name as name,
+        f.type as type,
+        f.father_id as fatherId ,
+        c.id as subId,
+        c.name as subName,
+        c.type as subType,
+        c.father_id as subFatherId
+        FROM
+        category f
+        left join
+        category c
+        on
+        f.id=c.father_id
+        where
+        f.father_id=#{rootCatId}
+  </select>
+      <resultMap id="myNewItems" type="com.wang.vo.NewItemsVo">
+            <id column="rootCatId" property="rootCatId"  />
+            <result column="rootCatName" property="rootCatName" />
+            <result column="slogan" property="slogan" />
+            <result column="catImage" property="catImage"/>
+            <result column="bgColor" property="bgColor"/>
+            <collection property="simpleItemList" ofType="com.wang.vo.SimpleItemVo">
+                  <id column="itemId" property="itemId"  />
+                  <result column="itemName" property="itemName" />
+                  <result column="itemUrl" property="itemUrl" />
+                  <result column="createdTime" property="createdTime"/>
+            </collection>
+      </resultMap>
+      <select id="getSixNewItemsLazy" resultMap="myNewItems" parameterType="int">
+             select
+                f.id as rootCatId,
+                f.name as rootCatName,
+                f.slogan as slogan,
+                f.cat_image as catImage,
+                f.bg_color as bgColor,
+                i.id as itemId,
+                i.item_name as itemName,
+                im.url as itemUrl,
+                i.created_time as createdTime
+            from
+                category f
+            left join items i on f.id = i.root_cat_id
+            left join items_img im on i.id=im.item_id
+            where
+                f.type=1
+            and
+                i.root_cat_id=#{rootCatId}
+            and
+                im.is_main=1
+            order by
+                i.created_time
+            desc
+            limit 0,6
+      </select>
+</mapper>
